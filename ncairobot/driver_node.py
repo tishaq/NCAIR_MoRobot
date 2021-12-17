@@ -2,38 +2,35 @@ import time
 import rclpy
 from rclpy.node import Node 
 from geometry_msgs.msg import Twist
-# import wiringpi
+import wiringpi
 
-# wiringpi.wiringPiSetupGpio()
+wiringpi.wiringPiSetupGpio()
 
 backLeftMotor = {"IN1": 23, "IN2":24}
 backRightMotor = {"IN1": 26, "IN2":13}
 frontRightMotor = {"IN1": 27, "IN2":22}
 frontLeftMotor = {"IN1": 25, "IN2":12}
 
-# wiringpi.pinMode(frontLeftMotor["IN1"], 1)
-# wiringpi.pinMode(frontLeftMotor["IN2"], 1)
-# wiringpi.pinMode(frontRightMotor["IN1"], 1)
-# wiringpi.pinMode(frontRightMotor["IN2"], 1)
+wiringpi.pinMode(frontLeftMotor["IN1"], 1)
+wiringpi.pinMode(frontLeftMotor["IN2"], 1)
+wiringpi.pinMode(frontRightMotor["IN1"], 1)
+wiringpi.pinMode(frontRightMotor["IN2"], 1)
 
-# wiringpi.pinMode(backLeftMotor["IN1"], 1)
-# wiringpi.pinMode(backLeftMotor["IN2"], 1)
-# wiringpi.pinMode(backRightMotor["IN1"], 1)
-# wiringpi.pinMode(backRightMotor["IN2"], 1)
+wiringpi.pinMode(backLeftMotor["IN1"], 1)
+wiringpi.pinMode(backLeftMotor["IN2"], 1)
+wiringpi.pinMode(backRightMotor["IN1"], 1)
+wiringpi.pinMode(backRightMotor["IN2"], 1)
 
 def move(motor, direction):
     if direction == 0: #clockwise movement
-        # wiringpi.digitalWrite(motor["IN1"], 1)
-        # wiringpi.digitalWrite(motor["IN2"], 0)
-        print("moving "+motor + " in "+direction+" direction")
+        wiringpi.digitalWrite(motor["IN1"], 1)
+        wiringpi.digitalWrite(motor["IN2"], 0)
     elif direction == 1:  #counterclockwise movement
-        # wiringpi.digitalWrite(motor["IN1"], 0)
-        # wiringpi.digitalWrite(motor["IN2"], 1)
-        print("moving "+motor + " in "+direction+" direction")
+        wiringpi.digitalWrite(motor["IN1"], 0)
+        wiringpi.digitalWrite(motor["IN2"], 1)
     else:  #stop movement
-        # wiringpi.digitalWrite(motor["IN1"], 0)
-        # wiringpi.digitalWrite(motor["IN2"], 0)
-        print("moving "+motor + " in "+direction+" direction")
+        wiringpi.digitalWrite(motor["IN1"], 0)
+        wiringpi.digitalWrite(motor["IN2"], 0)
 
 def moveForward():
     move(frontRightMotor, 1)
@@ -118,19 +115,19 @@ class DriverNode(Node):
         #check for linear direction
         if(msg.linear.x == 0.0 and msg.angular.z == 0.0):
             self.get_logger().info("Do nothing linear")
-            # forceStop()
+            forceStop()
         elif(msg.linear.x == 2.0):
             self.get_logger().info("Go Forward")
-            # moveForward()
+            moveForward()
         elif(msg.linear.x == -2.0):
             self.get_logger().info("Go Backword")  
-            # moveBackward()
+            moveBackward()
         elif(msg.angular.z == 2.0):
             self.get_logger().info("turn left")
-            # turnLeft()
+            turnLeft()
         elif(msg.angular.z == -2.0):
             self.get_logger().info("turn right")     
-            # turnRight()  
+            turnRight()  
 
 def main(args=None):
     rclpy.init(args=args)
