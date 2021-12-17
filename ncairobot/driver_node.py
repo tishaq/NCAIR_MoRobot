@@ -119,15 +119,23 @@ class DriverNode(Node):
         elif(msg.linear.x == 2.0):
             self.get_logger().info("Go Forward")
             moveForward()
+            time.sleep(0.5)
+            forceStop()
         elif(msg.linear.x == -2.0):
             self.get_logger().info("Go Backword")  
             moveBackward()
+            time.sleep(0.5)
+            forceStop()
         elif(msg.angular.z == 2.0):
             self.get_logger().info("turn left")
             turnLeft()
+            time.sleep(0.5)
+            forceStop()
         elif(msg.angular.z == -2.0):
             self.get_logger().info("turn right")     
             turnRight()  
+            time.sleep(0.5)
+            forceStop()
 
 def main(args=None):
     rclpy.init(args=args)
