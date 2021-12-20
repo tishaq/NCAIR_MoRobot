@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'driver_node=ncairobot.driver_node:main'
+            'driver_node = ncairobot.driver_node:main',
+            'img_publisher = ncairobot.webcam_pub:main',
         ],
     },
 )

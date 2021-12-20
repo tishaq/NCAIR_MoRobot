@@ -6,7 +6,14 @@
   <description>NCAIR Mobile robots</description>
   <maintainer email="ncair@nitda.gov.ng">ncair</maintainer>
   <license>GNU license</license>
-  <depend>turtlesim</depend>
+ 
+  <depend>rclpy</depend>
+  <depend>image_transport</depend>
+  <depend>cv_bridge</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
   <test_depend>ament_pep257</test_depend>
