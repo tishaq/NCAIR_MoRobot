@@ -128,12 +128,12 @@ class DriverNode(Node):
             forceStop()
         elif(msg.angular.z == 2.0):
             self.get_logger().info("turn left")
-            turnLeft()
+            left()
             time.sleep(0.5)
             forceStop()
         elif(msg.angular.z == -2.0):
             self.get_logger().info("turn right")     
-            turnRight()  
+            right()  
             time.sleep(0.5)
             forceStop()
 
